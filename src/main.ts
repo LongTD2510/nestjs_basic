@@ -1,0 +1,14 @@
+import { NestFactory } from '@nestjs/core';
+import { AppModule } from './app.module';
+
+async function bootstrap() {
+  const app = await NestFactory.create(AppModule);
+  const globalPrefix = 'api';
+  app.setGlobalPrefix(globalPrefix);
+  await app.listen(process.env.PORT, () => {
+    console.log(
+      `🚀 Application is running on: http://localhost:${process.env.PORT}/${globalPrefix}`,
+    );
+  });
+}
+bootstrap();
